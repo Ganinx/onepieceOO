@@ -26,7 +26,18 @@ class PersonnageManager extends DbManager implements CrudInterface
         }
         return $arrayPersonnage;
     }
+     public function findPersoUser($idUser){
 
+         $query = $this->bdd->prepare("SELECT * FROM personnages join personnages_users pu on pu.id_personnage = personnages.id join users on users.id = pu.id_user WHERE users.id =:id");
+         $query ->execute(["id"=>$idUser]);
+         $resultats = $query->fetchAll();
+
+         $persos = [];
+         foreach ($resultats as $resultat ){
+             $persos[]= new Personnage($resultat["id"],$resultat["name"],$resultat["image"],$resultat["prime"]);
+         };
+         return $persos;
+     }
     public function delete($personnage)
     {
         $query = $this->bdd->prepare("DELETE FROM personnages WHERE id= :id");
