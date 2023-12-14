@@ -10,7 +10,7 @@ class UserManager extends DbManager implements CrudInterface {
 
             $user =null;
             if($resultat){
-                $user = new Users($resultat["id"], $resultat["firstname"],$resultat["id_bateau"],$resultat["id_race"],$resultat["id_fruit"]);
+                $user = new User($resultat["id"], $resultat["firstname"],$resultat["id_bateau"],$resultat["id_race"],$resultat["id_fruit"]);
             }
         }else{
             $query = $this->bdd->prepare("SELECT users.*, b.bateau_name,b.image_bateau,f.fruit_name,f.id_type_fruit,type_name,r.nom_race,r.image_race FROM users JOIN fruits f on f.id = users.id_fruit JOIN bateaux b on b.id = users.id_bateau
@@ -24,7 +24,7 @@ join races r on r.id = users.id_race JOIN fruits_types ft ON ft.id = f.id_type_f
                 $fruit = new Fruit($resultat["id_fruit"],$resultat["fruit_name"],$fruitType);
                 $race = new Race($resultat["id_race"],$resultat["nom_race"],$resultat["image_race"]);
                 $bateau = new Bateau($resultat["id_bateau"],$resultat["bateau_name"],$resultat['image_bateau']);
-                $user = new Users($resultat["id"],$resultat["firstname"],$bateau,$race,$fruit);
+                $user = new User($resultat["id"],$resultat["firstname"],$bateau,$race,$fruit);
             }
         }
 
@@ -33,12 +33,17 @@ join races r on r.id = users.id_race JOIN fruits_types ft ON ft.id = f.id_type_f
 
     public function findAll()
     {
-        $query = $this->bdd->query("SELECT * FROM users");
+        $query = $this->bdd->query("SELECT users.*, b.bateau_name,b.image_bateau,f.fruit_name,f.id_type_fruit,type_name,r.nom_race,r.image_race FROM users JOIN fruits f on f.id = users.id_fruit JOIN bateaux b on b.id = users.id_bateau
+join races r on r.id = users.id_race JOIN fruits_types ft ON ft.id = f.id_type_fruit");
         $resultats = $query->fetchAll();
 
         $arrayUsers = [];
         foreach ($resultats as $resultat) {
-            $arrayUsers[]= new Users($resultat["id"],$resultat["firstname"],$resultat["id_bateau"],$resultat["id_race"],$resultat["id_fruit"]);
+            $fruitType = new Fruits_types($resultat["id_type_fruit"],$resultat["type_name"]);
+            $fruit = new Fruit($resultat["id_fruit"],$resultat["fruit_name"],$fruitType);
+            $race = new Race($resultat["id_race"],$resultat["nom_race"],$resultat["image_race"]);
+            $bateau = new Bateau($resultat["id_bateau"],$resultat["bateau_name"],$resultat['image_bateau']);
+            $arrayUsers[] = new User($resultat["id"],$resultat["firstname"],$bateau,$race,$fruit);
         }
         return $arrayUsers;
     }

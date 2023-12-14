@@ -26,10 +26,9 @@ class PersonnageManager extends DbManager implements CrudInterface
         }
         return $arrayPersonnage;
     }
-     public function findPersoUser($idUser){
+     public function findPersoUser(){
 
          $query = $this->bdd->prepare("SELECT * FROM personnages join personnages_users pu on pu.id_personnage = personnages.id join users on users.id = pu.id_user WHERE users.id =:id");
-         $query ->execute(["id"=>$idUser]);
          $resultats = $query->fetchAll();
 
          $persos = [];
@@ -61,6 +60,15 @@ class PersonnageManager extends DbManager implements CrudInterface
             'image'=>$personnage->getImage(),
             'prime'=>$personnage->getPrime()
         ]);
+    }
+
+    public function genRand(){
+        $query = $this->bdd -> query("SELECT * FROM personnages ORDER BY RAND() LIMIT 1");
+        $results = $query->fetch();
+
+        $personnage = new Personnage($resultat["id"],$resultat["name"],$resultat["image"],$resultat["prime"]);
+        return $personnage;
+
     }
 
 }
