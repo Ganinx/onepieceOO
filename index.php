@@ -14,7 +14,9 @@ if($_GET["controller"] == "user"){
     }
     if($_GET["action"] == "list"){
         $allUser->findAll();
-        $allpersonnage->findPersoUser();
+    }
+    if($_GET["action"] == "detail"){
+        $allUser->find();
     }
 }
 

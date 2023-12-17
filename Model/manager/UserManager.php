@@ -20,7 +20,7 @@ join races r on r.id = users.id_race JOIN fruits_types ft ON ft.id = f.id_type_f
 
             $user =null;
             if($resultat){
-                $fruitType = new fruits_types($resultat["id_type_fruit"],$resultat["type_name"]);
+                $fruitType = new Fruits_types($resultat["id_type_fruit"],$resultat["type_name"]);
                 $fruit = new Fruit($resultat["id_fruit"],$resultat["fruit_name"],$fruitType);
                 $race = new Race($resultat["id_race"],$resultat["nom_race"],$resultat["image_race"]);
                 $bateau = new Bateau($resultat["id_bateau"],$resultat["bateau_name"],$resultat['image_bateau']);
@@ -31,20 +31,33 @@ join races r on r.id = users.id_race JOIN fruits_types ft ON ft.id = f.id_type_f
         return $user;
     }
 
-    public function findAll()
+    public function findAll($deep =false)
     {
-        $query = $this->bdd->query("SELECT users.*, b.bateau_name,b.image_bateau,f.fruit_name,f.id_type_fruit,type_name,r.nom_race,r.image_race FROM users JOIN fruits f on f.id = users.id_fruit JOIN bateaux b on b.id = users.id_bateau
-join races r on r.id = users.id_race JOIN fruits_types ft ON ft.id = f.id_type_fruit");
-        $resultats = $query->fetchAll();
-
         $arrayUsers = [];
-        foreach ($resultats as $resultat) {
-            $fruitType = new Fruits_types($resultat["id_type_fruit"],$resultat["type_name"]);
-            $fruit = new Fruit($resultat["id_fruit"],$resultat["fruit_name"],$fruitType);
-            $race = new Race($resultat["id_race"],$resultat["nom_race"],$resultat["image_race"]);
-            $bateau = new Bateau($resultat["id_bateau"],$resultat["bateau_name"],$resultat['image_bateau']);
-            $arrayUsers[] = new User($resultat["id"],$resultat["firstname"],$bateau,$race,$fruit);
+        if($deep){
+            $query = $this->bdd->query("SELECT users.*, b.bateau_name,b.image_bateau,f.fruit_name,f.id_type_fruit,type_name,r.nom_race,r.image_race FROM users JOIN fruits f on f.id = users.id_fruit JOIN bateaux b on b.id = users.id_bateau
+join races r on r.id = users.id_race JOIN fruits_types ft ON ft.id = f.id_type_fruit");
+            $resultats = $query->fetchAll();
+
+
+            foreach ($resultats as $resultat) {
+                $fruitType = new Fruits_types($resultat["id_type_fruit"],$resultat["type_name"]);
+                $fruit = new Fruit($resultat["id_fruit"],$resultat["fruit_name"],$fruitType);
+                $race = new Race($resultat["id_race"],$resultat["nom_race"],$resultat["image_race"]);
+                $bateau = new Bateau($resultat["id_bateau"],$resultat["bateau_name"],$resultat['image_bateau']);
+                $arrayUsers[] = new User($resultat["id"],$resultat["firstname"],$bateau,$race,$fruit);
+            }
+        }else{
+            $query = $this->bdd->query("SELECT * FROM users");
+            $resultats = $query->fetchAll();
+
+
+            foreach ($resultats as $resultat) {
+
+                $arrayUsers[] = new User($resultat["id"],$resultat["firstname"],$resultat["id_bateau"],$resultat["id_race"],$resultat["id_fruit"]);
+            }
         }
+
         return $arrayUsers;
     }
 

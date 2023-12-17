@@ -14,40 +14,9 @@
 
     <?php
     foreach ($userDonnee as $item) {
-        echo('<h3 class="text-center">'.$item->getFirstname().'</h3>
-<div class="row justify-content-center mx-auto">
-<div class="card" style="width: 18rem;">
-  <img src="'.$item->getIdBateau()->getImageBateau().'" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">'.$item->getIdBateau()->getBateauName().'</h5>
-  </div>
-</div>
-<div class="card" style="width: 18rem;">
-  <img src="'.$item->getIdRace()->getImageRace().'" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">'.$item->getIdRace()->getNomRace().'</h5>
-  </div>
-</div>
-');
-            foreach ($allperso as $perso ) {
-                echo('<div class="card" style="width: 18rem;">
-  <img src="'.$item->getImage().'" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">'.$item->getName().'</h5>
-    <p>'.$item->getPrime().'</p>
-  </div>
-</div>');
-            };
-
-echo('<div class="card" style="width: 18rem;">
-  <div class="card-body">
-    <h4 class="card-title">'.$item->getIdFruit()->getFruitName().'</h4>
-    <h5 class="card-title">'.$item->getIdFruit()->getIdTypeFruit()->getTypeName().'</h5>
-  </div>
-</div>
-');
+        echo('<div><h3 class="text-center">'.$item->getFirstname().'</h3>
+               <a href="index.php?controller=user&action=detail&id='.$item->getId().'" class="btn btn-warning">voir en détail</a> </div>');
     }
-var_dump($allperso);
     ?>
     </div>
 

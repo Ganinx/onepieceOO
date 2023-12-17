@@ -13,9 +13,6 @@ class PersonnageController{
 
     public function genAleaPersonnage(){
         $FruitPersonnage = $this->personnageManager->genRand();
-
-
-        require 'View/User/list.php';
     }
 
     public function findAll(){
@@ -25,8 +22,6 @@ class PersonnageController{
 
     public function findPersoUser(){
         $allperso = $this->personnageManager->findPersoUser();
-        var_dump($allperso);
-        require './View/User/list.php';
     }
 
 }
