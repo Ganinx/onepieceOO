@@ -31,6 +31,36 @@ join races r on r.id = equipages.id_race JOIN fruits_types ft ON ft.id = f.id_ty
         return $equipage;
     }
 
+    public function findNameEquipage($nomEquipage)
+    {
+            $query = $this->bdd->prepare("SELECT * FROM equipages WHERE name_equipage =:name_equipage");
+            $query ->execute(["name_equipage"=>$nomEquipage]);
+            $resultat = $query->fetch();
+
+            $equipage =null;
+            if($resultat){
+                $equipage = new Equipage($resultat["id"], $resultat["name_equipage"],$resultat["id_bateau"],$resultat["id_race"],$resultat["id_fruit"],$resultat['id_user']);
+            }
+        return $equipage;
+        }
+
+    public function checkName($name){
+        $query = $this->bdd->prepare("SELECT COUNT(*) as count FROM equipages WHERE name_equipage = :name");
+        $query->execute(['name'=>$name]);
+
+        $result = $query->fetch();
+
+        return $result['count'] > 0;
+    }
+    public function checkId($id){
+        $query = $this->bdd->prepare("SELECT COUNT(*) as count FROM equipages WHERE id_user = :id_user");
+        $query->execute(['id_user'=>$id]);
+
+        $result = $query->fetch();
+
+        return $result['count'] > 0;
+    }
+
     public function findPersoUser($id){
 
         $query = $this->bdd->prepare("SELECT * FROM personnages join personnages_users pu on pu.id_personnage = personnages.id join equipages on equipages.id = pu.id_equipage WHERE equipages.id =:id");
@@ -91,6 +121,19 @@ join races r on r.id = equipages.id_race JOIN fruits_types ft ON ft.id = f.id_ty
             'id_user'=>$obj->getIdUser()
         ]);
     }
+
+    public function pushPersonnage($array,$id)
+    {
+        foreach ($array as $item){
+            $query = $this->bdd->prepare("INSERT INTO personnages_users (id_personnage,id_equipage)VALUES(:id_personnage,:id_equipage)");
+            $query -> execute(['id_personnage' => $item,
+                'id_equipage'=>$id
+            ]);
+        }
+
+    }
+
+
 
     public function modif($obj)
     {

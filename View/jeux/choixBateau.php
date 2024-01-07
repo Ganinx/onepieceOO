@@ -12,7 +12,6 @@
 <?php
 include "View/parts/header.php";
 
-
 if(!isset($_SESSION['id_bateau'])) {
     $_SESSION['id_bateau'] = $bateauAlea->getId();
     echo('
@@ -21,12 +20,12 @@ if(!isset($_SESSION['id_bateau'])) {
         <img src="' . $bateauAlea->getImageBateau() . '" class="card-img-top" alt="...">
         <div class="card-body">
             <h5 class="card-title">' . $bateauAlea->getBateauName() . '</h5>
-            <a href="index.php?controller=jeux&choix=personnage">vers le fruit</a>
+            <a href="index.php?controller=user&action=equipage">vers ton equipage</a>
         </div>
     </div>
 </div>');
 }else{
-    echo('<a href="index.php?controller=jeux&choix=personnage">vers le fruit</a>');
+    echo('<a href="index.php?controller=user&action=equipage">vers ton equipage</a>');
 }
 
 ?>

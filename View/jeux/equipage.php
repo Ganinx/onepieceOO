@@ -1,3 +1,6 @@
+<?php
+require 'View/function.php';
+?>
 <!doctype html>
 <html lang="fr">
 <head>
@@ -14,17 +17,22 @@ include "View/parts/header.php";
 ?>
 
 
-<?php
+<h1>Te voici à la page de création de ton équipage</h1>
 
-if(!$_SERVER["REQUEST_METHOD"]== 'POST'){
-    echo('<form method="post">
+<p>En premier lieu, choisis le nom de ton équipage, par la suite, les prochaines bouton te donnerons ta race, ton fruit du démon, ton équipage de
+5 membres et pour finir ton bateau.
+    Tout équipage est unique donc bonne chance futur roi des pirates !
+</p>
+
+
+
+
+<form method="post">
     <label>Choisis le nom de ton équipage</label>
-    <input type="text" name="name-equipage">
-</form>');
-}else{
-    echo('<a href="index.php?controller=jeux&choix=race">Voir à quelle race tu appartiens</a>');
-}
-?>
+    <input type="text" name="name-equipage" class="form-control <?php displayBsClassForm($errors,"name-equipage") ?>" value="<?php keepFormValue("name-equipage") ?>">
+    <?php displayBsErrorForm($errors,'name-equipage') ?>
+    <input type="submit">
+</form>
 
 
 

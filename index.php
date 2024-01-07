@@ -13,7 +13,10 @@ if($_GET["controller"] == "user"){
     }
     elseif($_GET["action"] == "detail"){
         $allEquipage->find();
-    }else{
+    }elseif($_GET["action"] == "equipage"){
+        $allEquipage->setEquipage();
+    }
+    else{
         require 'View/security/page404.php';
     }
 }elseif($_GET["controller"] == "guest"){
@@ -39,8 +42,10 @@ $genRace = new RaceController();
 $genFruit = new FruitController();
 $genPerso = new PersonnageController();
 $genBateau = new BateauController();
-
-if($_GET["choix"] == "race"){
+$genNameEquipage = new EquipageController();
+    if($_GET["choix"] == "equipage"){
+        $genNameEquipage->verifName();
+    }elseif($_GET["choix"] == "race"){
         $genRace->genAleaRace();
     }elseif ($_GET["choix"] == "fruit"){
         $genFruit->genAleaFruit();

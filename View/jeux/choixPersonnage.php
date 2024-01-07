@@ -31,21 +31,6 @@ if(!isset($_SESSION['id_personnage'])) {
 </div>');
 
 }elseif (count($_SESSION['id_personnage']) < 5 ){
-    if(count($_SESSION['id_personnage']) == 4){
-        echo('
-<div class="row justify-content-center mx-auto">
-    <div class="card" style="width: 18rem;">
-        <img src="' . $personnageEquipage->getImage() . '" class="card-img-top" alt="...">
-        <div class="card-body">
-            <h5 class="card-title">' . $personnageEquipage->getName() . '</h5>
-            <h4>' . $personnageEquipage->getPrime() . '</h4>');
-        if (!empty($personnageEquipage->getDescription())) {
-            echo('<p>' . $personnageEquipage->getDescription() . '</p>');
-        }
-        echo('<a href="index.php?controller=jeux&choix=bateau">vers le bateau</a></div>
-    </div>
-</div>');
-    }else{
         array_push($_SESSION['id_personnage'],$personnageEquipage->getId());
         echo('
 <div class="row justify-content-center mx-auto">
@@ -57,10 +42,9 @@ if(!isset($_SESSION['id_personnage'])) {
         if (!empty($personnageEquipage->getDescription())) {
             echo('<p>' . $personnageEquipage->getDescription() . '</p>');
         }
-        echo('<a href="index.php?controller=jeux&choix=personnage">vers le perso</a></div>
+        echo('<a href="index.php?controller=jeux&choix=personnage">vers le bateau</a></div>
     </div>
 </div>');
-    }
 }
 else{
     echo('<a href="index.php?controller=jeux&choix=bateau">vers le bateau</a>');

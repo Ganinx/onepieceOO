@@ -14,7 +14,6 @@
 <?php
 include "View/parts/header.php";
 
-
 echo('<h3 class="text-center">'.$userDonnee->getNameEquipage().'</h3>
 <div class="row justify-content-center mx-auto">
 <div class="card" style="width: 18rem;">

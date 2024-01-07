@@ -25,7 +25,7 @@ if (!isset($_SESSION)){
           <a class="nav-link" href="index.php?controller=security&action=logout">deconnexion</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="index.php?controller=jeux&choix=race">Créer son équipage</a>
+          <a class="nav-link" href="index.php?controller=jeux&choix=equipage">Créer son équipage</a>
         </li>');
           }
           ?>
