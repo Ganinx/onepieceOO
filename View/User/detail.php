@@ -12,9 +12,10 @@
 <body>
 
 <?php
+include "View/parts/header.php";
 
 
-    echo('<h3 class="text-center">'.$userDonnee->getFirstname().'</h3>
+echo('<h3 class="text-center">'.$userDonnee->getNameEquipage().'</h3>
 <div class="row justify-content-center mx-auto">
 <div class="card" style="width: 18rem;">
   <img src="'.$userDonnee->getIdBateau()->getImageBateau().'" class="card-img-top" alt="...">
@@ -28,15 +29,29 @@
     <h5 class="card-title">'.$userDonnee->getIdRace()->getNomRace().'</h5>
   </div>
 </div>
-');
-
-    echo('<div class="card" style="width: 18rem;">
+<div class="card" style="width: 18rem;">
   <div class="card-body">
     <h4 class="card-title">'.$userDonnee->getIdFruit()->getFruitName().'</h4>
     <h5 class="card-title">'.$userDonnee->getIdFruit()->getIdTypeFruit()->getTypeName().'</h5>
   </div>
 </div>
+</div>
+<div class="row justify-content-center mx-auto">
 ');
+
+    foreach ($allperso as $item){
+        echo('<div class="card" style="width: 18rem;">
+  <img src="'.$item->getImage().'" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">'.$item->getName().'</h5>
+    <p>'.$item->getPrime().'</p>
+  </div>
+</div>
+
+');
+    }echo('</div>')
+
+
 
 ?>
 

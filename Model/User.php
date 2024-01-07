@@ -2,101 +2,102 @@
 
 class User
 {
-private $id;
-private $firstname;
-private $id_bateau;
-private $id_race;
-private $id_fruit;
+
+    private $id;
+
+    private $firstname;
+
+    private $lastname;
+
+    private $email;
+
+    private $password;
+
+    private $username;
 
 
-    public function __construct($id, $firstname, $id_bateau, $id_race, $id_fruit)
-    {
-        $this->id = $id;
-        $this->firstname = $firstname;
-        $this->id_bateau = $id_bateau;
-        $this->id_race = $id_race;
-        $this->id_fruit = $id_fruit;
-    }
+    public function __construct($id, $firstname, $lastname, $email, $password, $username)
+{
+    $this->id = $id;
+    $this->firstname = $firstname;
+    $this->lastname = $lastname;
+    $this->email = $email;
+    $this->password = $password;
+    $this->username = $username;
+}/**
+ * @return mixed
+ */
+public function getId()
+{
+    return $this->id;
+}/**
+ * @param mixed $id
+ */
+public function setId($id): void
+{
+    $this->id = $id;
+}/**
+ * @return mixed
+ */
+public function getFirstname()
+{
+    return $this->firstname;
+}/**
+ * @param mixed $firstname
+ */
+public function setFirstname($firstname): void
+{
+    $this->firstname = $firstname;
+}/**
+ * @return mixed
+ */
+public function getLastname()
+{
+    return $this->lastname;
+}/**
+ * @param mixed $lastname
+ */
+public function setLastname($lastname): void
+{
+    $this->lastname = $lastname;
+}/**
+ * @return mixed
+ */
+public function getEmail()
+{
+    return $this->email;
+}/**
+ * @param mixed $email
+ */
+public function setEmail($email): void
+{
+    $this->email = $email;
+}/**
+ * @return mixed
+ */
+public function getPassword()
+{
+    return $this->password;
+}/**
+ * @param mixed $password
+ */
+public function setPassword($password): void
+{
+    $this->password = $password;
+}/**
+ * @return mixed
+ */
+public function getUsername()
+{
+    return $this->username;
+}/**
+ * @param mixed $username
+ */
+public function setUsername($username): void
+{
+    $this->username = $username;
+}
 
-    /**
-     * @return mixed
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id): void
-    {
-        $this->id = $id;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getFirstname()
-    {
-        return $this->firstname;
-    }
-
-    /**
-     * @param mixed $firstname
-     */
-    public function setFirstname($firstname): void
-    {
-        $this->firstname = $firstname;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdBateau()
-    {
-        return $this->id_bateau;
-    }
-
-    /**
-     * @param mixed $id_bateau
-     */
-    public function setIdBateau($id_bateau): void
-    {
-        $this->id_bateau = $id_bateau;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdRace()
-    {
-        return $this->id_race;
-    }
-
-    /**
-     * @param mixed $id_race
-     */
-    public function setIdRace($id_race): void
-    {
-        $this->id_race = $id_race;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getIdFruit()
-    {
-        return $this->id_fruit;
-    }
-
-    /**
-     * @param mixed $id_fruit
-     */
-    public function setIdFruit($id_fruit): void
-    {
-        $this->id_fruit = $id_fruit;
-    }
 
 
 }

@@ -1,7 +1,7 @@
 <?php
 
 interface CrudInterface{
-    public function find($element,$deep=false);
+    public function find($id);
 
     public  function findAll();
 

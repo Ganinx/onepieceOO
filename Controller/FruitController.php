@@ -11,9 +11,8 @@ class FruitController{
     }
 
     public function genAleaFruit(){
-        $FruitAlea = $this->fruitManager->genRand();
-
-        require './View/User/list.php';
+        $fruitAlea = $this->fruitManager->genRand();
+        require './View/jeux/choixFruit.php';
     }
 
 

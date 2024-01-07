@@ -5,14 +5,26 @@ class Personnage{
     private $name;
     private $image;
     private $prime;
+    private $description;
 
 
-    public function __construct($id, $name, $image, $prime)
+    public function __construct($id, $name, $image, $prime,$description = null)
     {
         $this->id = $id;
         $this->name = $name;
         $this->image = $image;
         $this->prime = $prime;
+        $this->description = $description;
+    }
+
+    public function getDescription(): mixed
+    {
+        return $this->description;
+    }
+
+    public function setDescription(mixed $description): void
+    {
+        $this->description = $description;
     }
 
     /**

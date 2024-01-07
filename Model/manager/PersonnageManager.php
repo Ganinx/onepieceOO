@@ -2,7 +2,7 @@
 
 class PersonnageManager extends DbManager implements CrudInterface
 {
-    public function find($id, $deep = false)
+    public function find($id)
     {
         $query = $this->bdd->prepare("SELECT * FROM personnages WHERE id =:id");
         $query ->execute(["id"=>$id]);
@@ -10,7 +10,7 @@ class PersonnageManager extends DbManager implements CrudInterface
 
         $perso =null;
         if($resultat){
-            $perso = new Personnage($resultat["id"],$resultat["name"],$resultat["image"],$resultat["prime"]);
+            $perso = new Personnage($resultat["id"],$resultat["name"],$resultat["image"],$resultat["prime"],$resultat["description"]);
         }
         return $perso;
     }
@@ -22,18 +22,20 @@ class PersonnageManager extends DbManager implements CrudInterface
 
         $arrayPersonnage = [];
         foreach ($resultats as $resultat) {
-            $arrayPersonnage[]= new Personnage($resultat["id"],$resultat["name"],$resultat["image"],$resultat["prime"]);
+            $arrayPersonnage[]= new Personnage($resultat["id"],$resultat["name"],$resultat["image"],$resultat["prime"],$resultat["description"]);
         }
         return $arrayPersonnage;
     }
-     public function findPersoUser(){
+     public function findPersoUser($id){
 
          $query = $this->bdd->prepare("SELECT * FROM personnages join personnages_users pu on pu.id_personnage = personnages.id join users on users.id = pu.id_user WHERE users.id =:id");
+         $query ->execute(["id"=>$id]);
          $resultats = $query->fetchAll();
+
 
          $persos = [];
          foreach ($resultats as $resultat ){
-             $persos[]= new Personnage($resultat["id"],$resultat["name"],$resultat["image"],$resultat["prime"]);
+             $persos[]= new Personnage($resultat["id"],$resultat["name"],$resultat["image"],$resultat["prime"],$resultat["description"]);
          };
          return $persos;
      }
@@ -45,20 +47,22 @@ class PersonnageManager extends DbManager implements CrudInterface
 
     public function modif($personnage)
     {
-        $query = $this->bdd->prepare("UPDATE personnages SET name=:name,image=:image,prime=:prime WHERE id =:id");
+        $query = $this->bdd->prepare("UPDATE personnages SET name=:name,image=:image,prime=:prime,description=:description WHERE id =:id");
         $query -> execute(['name' => $personnage->getName(),
                             'image'=>$personnage->getImage(),
             'prime'=>$personnage->getPrime(),
-            'id'=>$personnage->getId()
+            'id'=>$personnage->getId(),
+            'description'=>$personnage->getDescription()
             ]);
     }
 
     public function push($personnage)
     {
-        $query = $this->bdd->prepare("INSERT INTO personnages (name,image,prime)VALUES(:name,:image,:prime)");
+        $query = $this->bdd->prepare("INSERT INTO personnages (name,image,prime,description)VALUES(:name,:image,:prime,:description)");
         $query -> execute(['name' => $personnage->getName(),
             'image'=>$personnage->getImage(),
-            'prime'=>$personnage->getPrime()
+            'prime'=>$personnage->getPrime(),
+            'description'=>$personnage->getDescription()
         ]);
     }
 
@@ -66,7 +70,7 @@ class PersonnageManager extends DbManager implements CrudInterface
         $query = $this->bdd -> query("SELECT * FROM personnages ORDER BY RAND() LIMIT 1");
         $results = $query->fetch();
 
-        $personnage = new Personnage($resultat["id"],$resultat["name"],$resultat["image"],$resultat["prime"]);
+        $personnage = new Personnage($results["id"],$results["name"],$results["image"],$results["prime"],$results["description"]);
         return $personnage;
 
     }

@@ -12,7 +12,10 @@ class PersonnageController{
     }
 
     public function genAleaPersonnage(){
-        $FruitPersonnage = $this->personnageManager->genRand();
+
+        $personnageEquipage = $this->personnageManager->genRand();
+
+        require './View/jeux/choixPersonnage.php';
     }
 
     public function findAll(){
@@ -20,8 +23,19 @@ class PersonnageController{
         require './View/User/page.php';
     }
 
-    public function findPersoUser(){
-        $allperso = $this->personnageManager->findPersoUser();
+    public function find(){
+        $detailPerso = $this->personnageManager->find($_GET["id"]);
+
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST"){
+
+            $detailPerso->setDescription($_POST["description"]);
+
+            $this->personnageManager->modif($detailPerso);
+        }
+        require './View/personnage/detailpersonnage.php';
     }
+
+
 
 }

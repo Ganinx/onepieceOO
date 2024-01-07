@@ -12,8 +12,7 @@ class BateauController{
 
     public function genAleaBateau(){
         $bateauAlea = $this->bateauManager->genRand();
-
-        require './View/User/list.php';
+        require './View/jeux/choixBateau.php';
     }
 
 

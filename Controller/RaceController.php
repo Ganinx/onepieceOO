@@ -12,8 +12,7 @@ class RaceController{
 
     public function genAleaRace(){
         $raceAlea = $this->raceManager->genRand();
-
-        require './View/User/list.php';
+        require './View/jeux/choixRace.php';
     }
 
 
