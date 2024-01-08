@@ -2,15 +2,18 @@
 
 class Equipage
 {
+
+    public static $allowedMatiere = ["mathématique","français","histoire-géo","physique-chimie","technologie","svt","EPS","anglais","latin"];
 private $id;
 private $name_equipage;
 private $id_bateau;
 private $id_race;
 private $id_fruit;
 private $id_user;
+private $prime_user;
 
 
-    public function __construct($id, $name_equipage, $id_bateau, $id_race, $id_fruit,$id_user)
+    public function __construct($id, $name_equipage, $id_bateau, $id_race, $id_fruit,$id_user,$prime_user)
     {
         $this->id = $id;
         $this->name_equipage = $name_equipage;
@@ -18,6 +21,23 @@ private $id_user;
         $this->id_race = $id_race;
         $this->id_fruit = $id_fruit;
         $this->id_user = $id_user;
+        $this->prime_user = $prime_user;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPrimeUser()
+    {
+        return $this->prime_user;
+    }
+
+    /**
+     * @param mixed $prime_user
+     */
+    public function setPrimeUser($prime_user): void
+    {
+        $this->prime_user = $prime_user;
     }
 
     /**

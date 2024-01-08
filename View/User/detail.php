@@ -14,7 +14,8 @@
 <?php
 include "View/parts/header.php";
 
-echo('<h3 class="text-center">'.$userDonnee->getNameEquipage().'</h3>
+echo('<h2 class="text-center">'.htmlentities($userDonnee->getNameEquipage()).'</h2>
+<h3 class="text-center">'.number_format($userDonnee->getPrimeUser(), 0, ',', ' ').' berrys</h3>
 <div class="row justify-content-center mx-auto">
 <div class="card" style="width: 18rem;">
   <img src="'.$userDonnee->getIdBateau()->getImageBateau().'" class="card-img-top" alt="...">

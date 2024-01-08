@@ -53,6 +53,8 @@ $genNameEquipage = new EquipageController();
         $genPerso->genAleaPersonnage();
     }elseif ($_GET["choix"] == "bateau"){
         $genBateau->genAleaBateau();
+    }elseif ($_GET["choix"] == "prime"){
+        $genNameEquipage->prime();
     }
 }else{
     require 'View/security/page404.php';

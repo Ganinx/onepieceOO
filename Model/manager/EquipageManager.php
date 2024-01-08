@@ -24,7 +24,7 @@ join races r on r.id = equipages.id_race JOIN fruits_types ft ON ft.id = f.id_ty
                 $fruit = new Fruit($resultat["id_fruit"],$resultat["fruit_name"],$fruitType);
                 $race = new Race($resultat["id_race"],$resultat["nom_race"],$resultat["image_race"]);
                 $bateau = new Bateau($resultat["id_bateau"],$resultat["bateau_name"],$resultat['image_bateau']);
-                $equipage = new Equipage($resultat["id"],$resultat["name_equipage"],$bateau,$race,$fruit,$resultat['id_user']);
+                $equipage = new Equipage($resultat["id"],$resultat["name_equipage"],$bateau,$race,$fruit,$resultat['id_user'],$resultat["prime_user"]);
             }
         }
 
@@ -39,7 +39,7 @@ join races r on r.id = equipages.id_race JOIN fruits_types ft ON ft.id = f.id_ty
 
             $equipage =null;
             if($resultat){
-                $equipage = new Equipage($resultat["id"], $resultat["name_equipage"],$resultat["id_bateau"],$resultat["id_race"],$resultat["id_fruit"],$resultat['id_user']);
+                $equipage = new Equipage($resultat["id"], $resultat["name_equipage"],$resultat["id_bateau"],$resultat["id_race"],$resultat["id_fruit"],$resultat['id_user'],$resultat["prime_user"]);
             }
         return $equipage;
         }
@@ -89,7 +89,7 @@ join races r on r.id = equipages.id_race JOIN fruits_types ft ON ft.id = f.id_ty
                 $fruit = new Fruit($resultat["id_fruit"],$resultat["fruit_name"],$fruitType);
                 $race = new Race($resultat["id_race"],$resultat["nom_race"],$resultat["image_race"]);
                 $bateau = new Bateau($resultat["id_bateau"],$resultat["bateau_name"],$resultat['image_bateau']);
-                $arrayUsers[] = new Equipage($resultat["id"],$resultat["name_equipage"],$bateau,$race,$fruit,$resultat['id_user']);
+                $arrayUsers[] = new Equipage($resultat["id"],$resultat["name_equipage"],$bateau,$race,$fruit,$resultat['id_user'],$resultat["prime_user"]);
             }
         }else{
             $query = $this->bdd->query("SELECT * FROM equipages");
@@ -98,7 +98,7 @@ join races r on r.id = equipages.id_race JOIN fruits_types ft ON ft.id = f.id_ty
 
             foreach ($resultats as $resultat) {
 
-                $arrayUsers[] = new Equipage($resultat["id"],$resultat["name_equipage"],$resultat["id_bateau"],$resultat["id_race"],$resultat["id_fruit"],$resultat['id_user']);
+                $arrayUsers[] = new Equipage($resultat["id"],$resultat["name_equipage"],$resultat["id_bateau"],$resultat["id_race"],$resultat["id_fruit"],$resultat['id_user'],$resultat["prime_user"]);
             }
         }
 
@@ -113,12 +113,13 @@ join races r on r.id = equipages.id_race JOIN fruits_types ft ON ft.id = f.id_ty
 
     public function push($obj)
     {
-        $query = $this->bdd->prepare("INSERT INTO equipages (name_equipage,id_bateau,id_race,id_fruit,id_user)VALUES(:name_equipage,:bateau,:race,:fruit,:id_user)");
+        $query = $this->bdd->prepare("INSERT INTO equipages (name_equipage,id_bateau,id_race,id_fruit,id_user,prime_user)VALUES(:name_equipage,:bateau,:race,:fruit,:id_user,:prime_user)");
         $query -> execute(['name_equipage' => $obj->getNameEquipage(),
             'bateau'=>$obj->getIdBateau(),
             'race'=>$obj->getIdRace(),
             'fruit'=>$obj->getIdFruit(),
-            'id_user'=>$obj->getIdUser()
+            'id_user'=>$obj->getIdUser(),
+            'prime_user'=>$obj->getPrimeUser()
         ]);
     }
 
@@ -133,17 +134,16 @@ join races r on r.id = equipages.id_race JOIN fruits_types ft ON ft.id = f.id_ty
 
     }
 
-
-
     public function modif($obj)
     {
-        $query = $this->bdd->prepare("UPDATE equipages SET name_equipage=:name_equipage,id_bateau=:bateau,id_race=:race,id_fruit=:fruit,id_user=:id_user WHERE id =:id");
+        $query = $this->bdd->prepare("UPDATE equipages SET name_equipage=:name_equipage,id_bateau=:bateau,id_race=:race,id_fruit=:fruit,id_user=:id_user,prime_user=:prime_user WHERE id =:id");
         $query -> execute(['name_equipage' => $obj->getNameEquipage(),
             'bateau'=>$obj->getIdBateau(),
             'race'=>$obj->getIdRace(),
             'id'=>$obj->getId(),
             'fruit'=>$obj->getIdFruit(),
-            'id_user'=>$obj->getIdUser()
+            'id_user'=>$obj->getIdUser(),
+            'prime_user'=>$obj->getPrimeUser()
         ]);
     }
 

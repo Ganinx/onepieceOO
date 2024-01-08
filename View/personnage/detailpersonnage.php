@@ -11,24 +11,26 @@
 <body>
 <?php
 include "View/parts/header.php";
-$texte = '<form method="post">
-<label>Ajouter une description</label>
-<input type="textarea" name="description" placeholder="description...">
-<input type="submit">
-</form> ';
-if(!is_null($detailPerso->getDescription())){
-    $texte = '<p>'.$detailPerso->getDescription().'</p>';
-}
 
+var_dump($detailPerso->getDescription());
     echo('<h3 class="text-center">'.$detailPerso->getName().'</h3>
 <div class="row justify-content-center mx-auto">
 <div class="card" style="width: 18rem;">
   <img src="'.$detailPerso->getImage().'" class="card-img-top" alt="...">
   <div class="card-body">
     <h5 class="card-title">'.$detailPerso->getName().'</h5>
-    <h4>'.$detailPerso->getPrime().'</h4>
-    '.$texte.'
-  </div>
+    <h4>'.$detailPerso->getPrime().'</h4>');
+    if(is_null($detailPerso->getDescription()) OR empty($detailPerso->getDescription())){
+    echo('<form method="post">
+<label>Ajouter une description</label>
+<input type="textarea" name="description" placeholder="description...">
+<input type="submit">
+</form>');
+
+}else{
+echo('<p>'.htmlentities($detailPerso->getDescription()).'</p>');
+    }
+  echo('</div>
 </div>
 ');
 

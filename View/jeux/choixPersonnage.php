@@ -40,7 +40,7 @@ if(!isset($_SESSION['id_personnage'])) {
             <h5 class="card-title">' . $personnageEquipage->getName() . '</h5>
             <h4>' . $personnageEquipage->getPrime() . '</h4>');
         if (!empty($personnageEquipage->getDescription())) {
-            echo('<p>' . $personnageEquipage->getDescription() . '</p>');
+            echo('<p>' . htmlentities($personnageEquipage->getDescription()) . '</p>');
         }
         echo('<a href="index.php?controller=jeux&choix=personnage">vers le bateau</a></div>
     </div>
