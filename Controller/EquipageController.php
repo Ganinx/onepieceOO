@@ -174,7 +174,7 @@ class EquipageController extends SessionController
 
         if(empty($_POST["pouvoir"])){
             $errors["pouvoir"] = "Veuillez entrer un pouvoir";
-        }elseif (strlen($_POST["pouvoir"]) > 20){
+        }elseif (strlen($_POST["pouvoir"]) > 30){
             $errors["pouvoir"] = "Veuillez entrer un pouvoir moins long";
         }
         if(empty($_POST["matiere"])){

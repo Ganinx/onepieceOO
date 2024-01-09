@@ -16,7 +16,7 @@ include "View/parts/header.php";
 
     <?php
     foreach ($userDonnee as $item) {
-        echo('<div><h3 class="text-center">'.$item->getNameEquipage().'</h3>
+        echo('<div><h3 class="text-center">'.htmlentities($item->getNameEquipage()).'</h3>
                <a href="index.php?controller=user&action=detail&id='.$item->getId().'" class="btn btn-warning">voir en détail</a> </div>');
     }
     ?>
