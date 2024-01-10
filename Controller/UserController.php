@@ -53,6 +53,7 @@ class UserController
 
             if (count($errors) == 0){
 
+
                 $user = new User(null,$_POST["firstname"],$_POST["lastname"],$_POST["email"],password_hash($_POST["password"],PASSWORD_DEFAULT),$_POST["username"]);
 
                 $this->userManager->push($user);

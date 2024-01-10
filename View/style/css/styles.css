@@ -10943,14 +10943,22 @@ header.masthead-login {
   background-attachment: scroll;
   background-size: cover;
 }
-header.masthead h1, header.masthead .h1 {
+header.masthead-register{
+  padding-bottom: calc(10rem - 4.5rem);
+  background: linear-gradient(to bottom, rgba(92, 77, 66, 0.8) 0%, rgba(92, 77, 66, 0.8) 100%), url("../assets/img/luffy-hero-register.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-size: cover;
+}
+header.masthead h1, header.masthead .h1,header.masthead-register h1,header.masthead-register .h1 {
   font-size: 2.25rem;
 }
 header.masthead-login h1, header.masthead-login .h1 {
   font-size: 2.25rem;
 }
 @media (min-width: 992px) {
-  header.masthead {
+  header.masthead,header.masthead-register {
     height: 100vh;
     min-height: 40rem;
     padding-top: 16.5rem;
