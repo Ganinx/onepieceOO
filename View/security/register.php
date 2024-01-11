@@ -20,7 +20,7 @@ include 'View/parts/header.php'
 ?>
 <header class="masthead-register">
     <div class="row gx-4 gx-lg-5 p-5 justify-content-center mb-5">
-        <div class="col-lg-6">
+        <div class="col-lg-6 block-form">
             <form id="contactForm" method="post">
                 <div class="form-floating mb-3">
                     <input type="text" name="lastname" id="lastname" placeholder="Votre nom" class="form-control <?php displayBsClassForm($errors,"lastname") ?>"  value="<?php keepFormValue("lastname") ?>">
@@ -53,7 +53,7 @@ include 'View/parts/header.php'
                     <?php displayBsErrorForm($errors,'confirm-password') ?>
                 </div>
                 <div class="d-grid"><button class="btn btn-primary btn-xl" id="submitButton" type="submit">S'inscrire</button></div>
-                Déjà un compte?<a class="" href="index.php?controller=security&action=login">Se connecter</a>
+                <a href="index.php?controller=security&action=login">Déjà un compte?</a>
             </form>
         </div>
     </div>

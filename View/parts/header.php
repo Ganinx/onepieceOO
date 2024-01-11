@@ -10,14 +10,11 @@ if (!isset($_SESSION)){
         <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ms-auto my-2 my-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link " aria-current="page" href="index.php?controller=guest&action=page">accueil</a>
+                    <a class="nav-link " aria-current="page" href="index.php?controller=guest&action=page">Accueil</a>
                 </li>
                 <?php
                 if(!array_key_exists('user',$_SESSION)){
                     echo('<li class="nav-item">
-          <a class="nav-link" href="index.php?controller=security&action=login">connexion</a>
-        </li>
-<li class="nav-item">
           <a class="nav-link" href="index.php?controller=security&action=login">connexion</a>
         </li>');
                 }
@@ -25,13 +22,13 @@ if (!isset($_SESSION)){
                     $userSession = unserialize($_SESSION['user']);
                     echo('
         <li class="nav-item">
-            <a class="nav-link" href="">'.$userSession->getFirstname().' '.$userSession->getLastname().'</a>
+            <a class="nav-link" href="index.php?controller=jeux&choix=equipage">Créer ton équipage</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="index.php?controller=jeux&choix=equipage">Créer son équipage</a>
+            <a class="nav-link" href="">'.ucfirst($userSession->getUsername()).'</a>
         </li>
         <li class="nav-item">
-              <a class="nav-link" href="index.php?controller=security&action=logout">deconnexion</a>
+              <a class="nav-link" href="index.php?controller=security&action=logout">Deconnexion</a>
         </li>
         ');
                 }

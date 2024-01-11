@@ -18,7 +18,7 @@ include 'View/parts/header.php'
 ?>
 <header class="masthead-login">
         <div class="row gx-4 gx-lg-5 p-5 justify-content-center mb-5">
-            <div class="col-lg-6">
+            <div class="col-lg-6 block-form">
                 <form id="contactForm" method="post">
                     <!-- Name input-->
                     <div class="form-floating mb-3">
@@ -37,7 +37,7 @@ include 'View/parts/header.php'
                     }
                     ?>
                     <div class="d-grid"><button class="btn btn-primary btn-xl" id="submitButton" type="submit">Se connecter</button></div>
-                    Toujours pas de compte?<a class="" href="index.php?controller=security&action=register">Créer un compte</a>
+                    <a class="" href="index.php?controller=security&action=register">Toujours pas de compte?</a>
                 </form>
             </div>
         </div>

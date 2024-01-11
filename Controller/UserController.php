@@ -27,7 +27,7 @@ class UserController
 
                     $_SESSION["user"] = serialize($user);
 
-                    header("Location: index.php?controller=user&action=list");
+                    header("Location: index.php?controller=guest&action=page");
                 }else {
                     $error =true;
                 }
@@ -35,7 +35,7 @@ class UserController
                 $error =true;
             }
         }if (array_key_exists("user",$_SESSION)){
-            header("Location: index.php?controller=user&action=list");
+            header("Location: index.php?controller=guest&action=page");
         }
 
         require "View/security/login.php";
@@ -62,7 +62,7 @@ class UserController
 
                 $_SESSION["user"] = serialize($user);
 
-                header("Location: index.php?controller=user&action=list");
+                header("Location: index.php?controller=guest&action=page");
             }
 
         }
