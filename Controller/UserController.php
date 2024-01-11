@@ -26,6 +26,9 @@ class UserController
                     session_start();
 
                     $_SESSION["user"] = serialize($user);
+                    if($this->userManager->checkNameEquipage($user->getFirstname())){
+                        $_SESSION['equip'] = true;
+                    }
 
                     header("Location: index.php?controller=guest&action=page");
                 }else {

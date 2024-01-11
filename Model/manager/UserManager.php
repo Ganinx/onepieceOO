@@ -50,6 +50,15 @@ class UserManager extends DbManager
         // TODO: Implement modif() method.
     }
 
+    public function checkNameEquipage($name){
+        $query = $this->bdd->prepare("SELECT COUNT(*) as count FROM users join equipages e on e.id_user = users.id WHERE firstname = :name");
+        $query->execute(['name'=>$name]);
+
+        $result = $query->fetch();
+
+        return $result['count'] > 0;
+    }
+
 
 
 
