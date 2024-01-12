@@ -16,10 +16,10 @@ require 'View/function.php';
 </head>
 <body>
 <?php
-include 'View/parts/header.php'
+include 'View/parts/header.php';
 ?>
 <header class="masthead-register">
-    <div class="row gx-4 gx-lg-5 p-5 justify-content-center mb-5">
+    <div class="row gx-4 gx-lg-5 p-5 mx-0 justify-content-center mb-5">
         <div class="col-lg-6 block-form">
             <form id="contactForm" method="post">
                 <div class="form-floating mb-3">

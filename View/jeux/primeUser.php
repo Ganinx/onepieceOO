@@ -19,7 +19,7 @@ require 'View/function.php';
 include "View/parts/header.php";
 ?>
 <header class="masthead-prime">
-    <div class="row gx-4 gx-lg-5 p-5 justify-content-center mb-5">
+    <div class="row gx-4 gx-lg-5 p-5 mx-0 justify-content-center mb-5">
         <div class="col-lg-6 block-form">
             <?php
 if(!array_key_exists('prime',$_SESSION)){

@@ -43,8 +43,13 @@ echo('<h2 class="text-center">'.htmlentities($userDonnee->getNameEquipage()).'</
         echo('<div class="card" style="width: 18rem;">
   <img src="'.$item->getImage().'" class="card-img-top" alt="...">
   <div class="card-body">
-    <h5 class="card-title">'.$item->getName().'</h5>
-    <p>'.$item->getPrime().'</p>
+    <h5 class="card-title">'.$item->getName().'</h5>');
+    if (is_null($item->getPrime())){
+    echo('<p>0 Berrys</p>');
+    }else{
+    echo('<p>'.number_format($item->getPrime(), 0, ',', ' ').' Berrys</p>');
+    };
+    echo('
   </div>
 </div>
 

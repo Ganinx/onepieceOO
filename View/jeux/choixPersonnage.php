@@ -16,7 +16,7 @@
 include "View/parts/header.php";
 ?>
 <header class="masthead-race">
-    <div class="row gx-4 gx-lg-5 p-5 justify-content-center mb-5">
+    <div class="row gx-4 gx-lg-5 p-5 mx-0 justify-content-center mb-5">
         <div class="col-lg-3 block-form d-flex justify-content-center">
 <?php
 if(!isset($_SESSION['id_personnage'])) {
@@ -41,8 +41,13 @@ if(!isset($_SESSION['id_personnage'])) {
         <h2 class="text-white font-weight-bold">' . $personnageEquipage->getName() . '</h2>
         <div class="img-race">
         <img src="' . $personnageEquipage->getImage() . '" class="img-fluid" alt="...">
-        </div>
-            <h4 class="text-white mt-2">'.number_format($personnageEquipage->getPrime(), 0, ',', ' ').' de Berrys</h4>');
+        </div>');
+        if (is_null($personnageEquipage->getPrime())){
+            echo('<h4 class="text-white mt-2">pas de prime</h4>');
+        }else{
+            echo('<h4 class="text-white mt-2">'.number_format($personnageEquipage->getPrime(), 0, ',', ' ').' de Berrys</h4>');
+        }
+
     if (!empty($personnageEquipage->getDescription())) {
         echo('<p>' . $personnageEquipage->getDescription() . '</p>');
     }

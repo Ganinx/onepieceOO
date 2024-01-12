@@ -16,7 +16,7 @@
 include "View/parts/header.php";
 ?>
 <header class="masthead-race">
-    <div class="row gx-4 gx-lg-5 p-5 justify-content-center mb-5">
+    <div class="row gx-4 gx-lg-5 p-5 mx-0 justify-content-center mb-5">
         <div class="col-lg-3 block-form d-flex justify-content-center">
             <?php
 if(!isset($_SESSION['id_bateau'])) {
